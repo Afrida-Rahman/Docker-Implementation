@@ -3,12 +3,27 @@ services:
       build:
         context: ./
         dockerfile: Dockerfile.dev
-
+      
+      image: flask-api
+      container_name: flask-api
+      environment:
+        - MONGO_USERNAME=$MONGO_USERNAME
+        - MONGO_PASSWORD=$MONGO_PASSWORD
+        - MONGO_HOSTNAME=db
+        - MONGO_DB=$MONGO_DB
       volumes: 
         - ./:/usr/app
-
       ports: 
-        - 5000:5000
-
+        - 8001:5000
       restart: unless-stopped
+
+    db:
+      image: mongo:4.1.8-xenial
+      container_name: mongo-db
+      environment: 
+        - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+        - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+      restart: unless-stopped    
+
+
 

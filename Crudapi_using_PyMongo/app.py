@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 
 app=Flask(__name__)
 #app.secret_key='secretkey'
-app.config['MONGO_URI']="mongodb://localhost:27017/db_for_crudapp"
+app.config['MONGO_URI']="mongodb://db_for_crudapp:27017"
 
 mongo=PyMongo(app)
 
@@ -76,8 +76,12 @@ def update_user(id):
     else :
         return not_found()
 
+@app.route('/')
+def ping_server():
+    return "Welcome to the world of data science."
+
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
 
 
