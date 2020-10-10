@@ -7,23 +7,18 @@ services:
       image: flask-api
       container_name: flask-api
       environment:
-        - MONGO_USERNAME=$MONGO_USERNAME
-        - MONGO_PASSWORD=$MONGO_PASSWORD
-        - MONGO_HOSTNAME=db
-        - MONGO_DB=$MONGO_DB
-      volumes: 
-        - ./:/usr/app
+        - MONGO_HOSTNAME=db        
       ports: 
-        - 8001:5000
+        - 8010:5000
       restart: unless-stopped
-
+      
     db:
-      image: mongo:4.1.8-xenial
+      image: mongo
       container_name: mongo-db
-      environment: 
-        - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
-        - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
-      restart: unless-stopped    
+      command: --serviceExecutor adaptive
+      restart: unless-stopped   
+
+  
 
 
 
