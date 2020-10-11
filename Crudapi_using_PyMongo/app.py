@@ -13,7 +13,7 @@ def ping_server():
     return "Welcome to the world of mine."
 
 
-default_connection_url = "mongodb+srv://sam:01521@cluster0.vycaj.mongodb.net/test1?retryWrites=true&w=majority"
+default_connection_url = "mongodb+srv://user:password@cluster0.vycaj.mongodb.net/test1?retryWrites=true&w=majority"
 db_name = 'Category'
 
 client = pymongo.MongoClient(default_connection_url)
