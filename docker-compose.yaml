@@ -1,0 +1,24 @@
+services:
+    app:
+      build:
+        context: ./
+        dockerfile: Dockerfile.dev
+      
+      image: flask-api
+      container_name: flask-api
+      environment:
+        - MONGO_HOSTNAME=db        
+      ports: 
+        - 8010:5000
+      restart: unless-stopped
+      
+    db:
+      image: mongo
+      container_name: mongo-db
+      command: --serviceExecutor adaptive
+      restart: unless-stopped   
+
+  
+
+
+
