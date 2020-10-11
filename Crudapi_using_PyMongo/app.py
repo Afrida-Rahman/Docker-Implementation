@@ -12,28 +12,14 @@ app=Flask(__name__)
 def ping_server():
     return "Welcome to the world of mine."
 
-#try:
+
 default_connection_url = "mongodb+srv://sam:01521@cluster0.vycaj.mongodb.net/test1?retryWrites=true&w=majority"
 db_name = 'Category'
 
-# create connection
 client = pymongo.MongoClient(default_connection_url)
-
-# create database
 database = client[db_name]
-
-# create collection
 collection_name = 'Employee'
 collection=database[collection_name]
-
-# initially inserted  data
-# record={'name': 'iNeuron','description': 'Affordable AI'}         
-# collection.insert_one(record)
-
-print(client.list_database_names())
-
-#except:
-#    print("Error - Cannot connect to db")
 
 
 try:
