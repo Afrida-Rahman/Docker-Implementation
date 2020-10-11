@@ -1,4 +1,5 @@
-#Production 
+# For Production :
+
 start:
 	docker container start db_mongo api_flask
 build:
@@ -10,7 +11,8 @@ destroy: stop
 	docker container rm api_flask db_mongo
 	docker image rm api_flask
 
-#Development
+
+# For Development :
 dev-start:
 	docker-compose up --detach
 dev-build:
