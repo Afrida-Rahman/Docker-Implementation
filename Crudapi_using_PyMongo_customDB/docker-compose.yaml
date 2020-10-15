@@ -1,0 +1,35 @@
+services:
+    app:
+      build:
+        context: ./
+        dockerfile: Dockerfile.dev
+      
+      image: flask-api
+      container_name: flask-api
+      environment:
+        MONGODB_DATABASE: mydb
+        MONGODB_USERNAME: own
+        MONGODB_PASSWORD: passwd
+        MONGODB_HOSTNAME: localhost   
+      depends_on:
+        - db    
+      ports: 
+        - 8010:5000
+      restart: unless-stopped
+      
+    db:
+      image: mongo
+      container_name: mongo-db
+      command: --serviceExecutor adaptive
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: m_user
+        MONGO_INITDB_ROOT_PASSWORD: m_pass
+        MONGO_INITDB_DATABASE: mydb
+      restart: unless-stopped   
+      volumes:
+        - dbdata:/data/db
+
+  
+
+
+
